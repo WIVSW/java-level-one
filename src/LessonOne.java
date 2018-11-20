@@ -14,6 +14,13 @@ class LessonOne {
 
     public static void main(String[] args) {
         initTypes();
+
+        System.out.println(
+            "3. Написать метод вычисляющий выражение a * (b + (c / d)) " +
+            "и возвращающий результат,где a, b, c, d " +
+            "– входные параметры этого метода:\n" +
+            "2 * (3 + (12 / 6) = " + calculate(2, 3, 12, 6)
+        );
     }
 
     /**
@@ -50,6 +57,18 @@ class LessonOne {
 
         // Выводим что получилось в терминал
         System.out.println(output);
+    }
+
+    /**
+     * @see 3. Написать метод вычисляющий выражение a * (b + (c / d)) и возвращающий результат,где a, b, c, d – входные параметры этого метода;
+     */
+    private static int calculate(int a, int b, int c, int d) {
+        if (d == 0) {
+            // На ноль делить нельзя
+            throw new NullPointerException("You can't divide by zero");
+        }
+
+        return a * (b + (c / d));
     }
 
 }
