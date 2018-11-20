@@ -37,6 +37,14 @@ class LessonOne {
         System.out.println(sevenTask);
 
         sayHi("Сергей");
+
+        System.out.println(
+            "\n" + eightTask +
+            "\tThe year 2008 is leap-year? " + isLeapYear(2008) + "\n" +
+            "\tThe year 1970 is leap-year? " + isLeapYear(1970) + "\n" +
+            "\tThe year 300 is leap-year? " + isLeapYear(300) + "\n" +
+            "\tThe year 400 is leap-year? " + isLeapYear(400) + "\n"
+        );
     }
 
     /**
@@ -124,6 +132,24 @@ class LessonOne {
     }
 
     /**
+     * @see 8. * Написать метод, который определяет является ли год високосным,
+     * и выводит сообщение в консоль. Каждый 4-й год является високосным,
+     * кроме каждого 100-го, при этом каждый 400-й – високосный.
+     */
+    private static boolean isLeapYear(int year) {
+        boolean isDivideByFour = year % 4 == 0;
+        boolean isDivideByHundred = year % 100 == 0;
+        boolean isDivideByFourHundred = year % 400 == 0;
+
+        if (isDivideByFour && !isDivideByHundred)
+            return true;
+        else if (isDivideByFour && isDivideByHundred && isDivideByFourHundred)
+            return true;
+
+        return false;
+    }
+
+    /**
      * Текстовые константы
      */
     private static String secondTask = "2. Создать переменные всех пройденных типов данных, и инициализировать их значения:\n";
@@ -144,4 +170,8 @@ class LessonOne {
 
     private static String sevenTask = "7. Написать метод, которому в качестве параметра передается строка, \n" +
         "обозначающая имя, метод должен вывести в консоль сообщение «Привет, указанное_имя!»:\n";
+
+    private static String eightTask = "8. * Написать метод, который определяет является ли год високосным, \n" +
+        "и выводит сообщение в консоль. Каждый 4-й год является високосным, \n" +
+        "кроме каждого 100-го, при этом каждый 400-й – високосный:\n";
 }
