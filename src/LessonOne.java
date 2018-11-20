@@ -1,5 +1,4 @@
 class LessonOne {
-
     /**
      * @see 2. Создать переменные всех пройденных типов данных, и инициализировать их значения;
      */
@@ -15,11 +14,13 @@ class LessonOne {
     public static void main(String[] args) {
         initTypes();
 
+        System.out.println(thirdTask + calculate(2, 3, 12, 6) + "\n");
+
         System.out.println(
-            "3. Написать метод вычисляющий выражение a * (b + (c / d)) " +
-            "и возвращающий результат,где a, b, c, d " +
-            "– входные параметры этого метода:\n" +
-            "2 * (3 + (12 / 6) = " + calculate(2, 3, 12, 6)
+            fourTask +
+            "\t5 + 4 = " + checkSumBetween10And20(5, 4) + "\n" +
+            "\t11 + 10 = " + checkSumBetween10And20(11, 10) + "\n" +
+            "\t7 + 8 = " + checkSumBetween10And20(7, 8) + "\n"
         );
     }
 
@@ -43,24 +44,24 @@ class LessonOne {
             от которого в обычной ситуации я бы избавился,
             поэтому выведем его в консоль.
          */
-        String output = "2. Создать переменные всех пройденных типов данных, " +
-                "и инициализировать их значения и инициализировать их значения:\n";
+        String output = secondTask;
 
-        output += "lesson = " + lesson + "\n";
-        output += "age = " + age + "\n";
-        output += "interval = " + interval + "\n";
-        output += "password = " + password + "\n";
-        output += "javaVersion = " + javaVersion + "\n";
-        output += "rouble = " + rouble + "\n";
-        output += "firstLetter = " + firstLetter + "\n";
-        output += "haveGitHub = " + haveGitHub + "\n";
+        output += "\tlesson = " + lesson + "\n";
+        output += "\tage = " + age + "\n";
+        output += "\tinterval = " + interval + "\n";
+        output += "\tpassword = " + password + "\n";
+        output += "\tjavaVersion = " + javaVersion + "\n";
+        output += "\trouble = " + rouble + "\n";
+        output += "\tfirstLetter = " + firstLetter + "\n";
+        output += "\thaveGitHub = " + haveGitHub + "\n";
 
         // Выводим что получилось в терминал
         System.out.println(output);
     }
 
     /**
-     * @see 3. Написать метод вычисляющий выражение a * (b + (c / d)) и возвращающий результат,где a, b, c, d – входные параметры этого метода;
+     * @see 3. Написать метод вычисляющий выражение a * (b + (c / d))
+     * и возвращающий результат,где a, b, c, d – входные параметры этого метода;
      */
     private static int calculate(int a, int b, int c, int d) {
         if (d == 0) {
@@ -71,4 +72,27 @@ class LessonOne {
         return a * (b + (c / d));
     }
 
+    /**
+     * @see 4. Написать метод, принимающий на вход два числа,
+     * и проверяющий что их сумма лежит в пределах от 10 до 20(включительно),
+     * если да – вернуть true, в противном случае – false;
+     */
+    private static boolean checkSumBetween10And20(int a, int b) {
+        int sum = a + b;
+
+        return sum >= 10 && sum <= 20;
+    }
+
+    /**
+     * Текстовые константы
+     */
+    private static String secondTask = "2. Создать переменные всех пройденных типов данных, " +
+        "и инициализировать их значения и инициализировать их значения:\n";
+
+    private static String thirdTask = "3. Написать метод вычисляющий выражение a * (b + (c / d)) " +
+        "и возвращающий результат,где a, b, c, d – входные параметры этого метода:\n\t2 * (3 + (12 / 6) = ";
+
+    private static String fourTask = "4. Написать метод, принимающий на вход два числа, " +
+        "и проверяющий что их сумма лежит в пределах от 10 до 20(включительно), " +
+        "если да – вернуть true, в противном случае – false:\n";
 }
