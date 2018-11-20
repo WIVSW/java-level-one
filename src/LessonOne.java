@@ -27,6 +27,12 @@ class LessonOne {
         printIsPositiveOrNegative(-4);
         printIsPositiveOrNegative(0);
         printIsPositiveOrNegative(12);
+
+        System.out.println(
+            "\n" + sixTask +
+            "\tThe number 6 is negative? " + isNegative(6) + "\n" +
+            "\tThe number -12 is negative? " + isNegative(-12) + "\n"
+        );
     }
 
     /**
@@ -98,6 +104,13 @@ class LessonOne {
     }
 
     /**
+     * @see 6. Написать метод, которому в качестве параметра передается целое число, метод должен вернуть true, если число отрицательное;
+     */
+    private static boolean isNegative(int number) {
+        return number < 0;
+    }
+
+    /**
      * Текстовые константы
      */
     private static String secondTask = "2. Создать переменные всех пройденных типов данных, и инициализировать их значения:\n";
@@ -112,4 +125,7 @@ class LessonOne {
     private static String fiveTask = "5. Написать метод, которому в качестве параметра передается целое число, \n" +
         "метод должен напечатать в консоль положительное ли число передали, или отрицательное; \n" +
         "Замечание: ноль считаем положительным числом:\n";
+
+    private static String sixTask = "6. Написать метод, которому в качестве параметра передается целое число, \n" +
+        "метод должен вернуть true, если число отрицательное;\n";
 }
