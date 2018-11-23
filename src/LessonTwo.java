@@ -14,6 +14,12 @@ public class LessonTwo {
         System.out.println("\t До:    " + Arrays.toString(emptyArray));
         fillArray(emptyArray);
         System.out.println("\t После: " + Arrays.toString(emptyArray));
+
+        // test calls for task№3
+        System.out.println("\n3. Задать массив [ 1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1 ]...:");
+        System.out.println("\t До:    " + Arrays.toString(randomArray));
+        changeArray(randomArray);
+        System.out.println("\t После: " + Arrays.toString(randomArray));
     }
 
     /**
@@ -23,7 +29,7 @@ public class LessonTwo {
 
     /**
      * Напоминаю, что мне разрешили использовать побитовые операторы.
-     * @see: 1. С помощью цикла и условия заменить 0 на 1, 1 на 0;
+     * @see 1. С помощью цикла и условия заменить 0 на 1, 1 на 0;
      */
     private static void invertArray(int[] array) {
         for(int i = 0; i < array.length; i++) {
@@ -32,16 +38,33 @@ public class LessonTwo {
     }
 
     /**
-     * @see: 2. Задать пустой целочисленный массив размером 8.
+     * @see 2. Задать пустой целочисленный массив размером 8.
      */
     private static int[] emptyArray = new int[8];
 
     /**
-     * @see: 2. С помощью цикла заполнить его значениями 0 3 6 9 12 15 18 21;
+     * @see 2. С помощью цикла заполнить его значениями 0 3 6 9 12 15 18 21;
      */
     private static void fillArray(int[] array) {
         for(int i = 0; i < array.length; i++) {
             array[i] = i * 3;
+        }
+    }
+
+    /**
+     * @see 3. Задать массив [ 1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1 ]
+     */
+    private static int[] randomArray = { 1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1 };
+
+    /**
+     * @see 3. пройти по нему циклом,
+     * и числа меньшие 6 умножить на 2;
+     */
+    private static void changeArray(int[] array) {
+        for(int i = 0; i < array.length; i++) {
+            if (array[i] < 6) {
+                array[i] *= 2;
+            }
         }
     }
 
