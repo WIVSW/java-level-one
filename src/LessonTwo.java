@@ -34,6 +34,12 @@ public class LessonTwo {
         System.out.println("\t В массиве: " + Arrays.toString(minMaxArray));
         System.out.println("\t Минимальное значение: " + minMax.min);
         System.out.println("\t Максимальное значение: " + minMax.max);
+
+        // test calls for task№6
+        System.out.println("\n6. Написать метод, в который передается не пустой одномерный целочисленный массив...:");
+        System.out.println("\t Массив " + Arrays.toString(balanceArrayOne) + " сбалансирован? " + checkBalance(balanceArrayOne));
+        System.out.println("\t Массив " + Arrays.toString(balanceArrayTwo) + " сбалансирован? " + checkBalance(balanceArrayTwo));
+        System.out.println("\t Массив " + Arrays.toString(balanceArrayThree) + " сбалансирован? " + checkBalance(balanceArrayThree));
     }
 
     /**
@@ -99,12 +105,12 @@ public class LessonTwo {
     }
 
     /**
-     * @see ** 5. Задать одномерный массив
+     * @see 5. ** Задать одномерный массив
      */
     private static int[] minMaxArray = { 2, -1, 0, 3, -3, 1, -2 };
 
     /**
-     * @see ** 5. и найти в нем минимальный и максимальный элементы
+     * @see 5. ** и найти в нем минимальный и максимальный элементы
      */
     private static MinAndMax findMinAndMax(int[] array) {
         int min = 0, max = 0;
@@ -112,6 +118,7 @@ public class LessonTwo {
             if (min > item) {
                 min = item;
             }
+
             if (max < item) {
                 max = item;
             }
@@ -128,6 +135,30 @@ public class LessonTwo {
             this.min = min;
             this.max = max;
         }
+    }
+
+    /**
+     * 6. ** Написать метод, в который передается не пустой одномерный целочисленный массив,
+     * метод должен вернуть true если в массиве есть место, в котором сумма левой и правой части
+     * массива равны.
+     */
+    private static int[] balanceArrayOne = { 1, 1, 1, 2, 1 };
+    private static int[] balanceArrayTwo = { 2, 1, 1, 2, 1 };
+    private static int[] balanceArrayThree = { 10, 10 };
+
+    private static boolean checkBalance(int[] array) {
+        int left = 0, right = 0;
+        int middle = (int) Math.ceil((double) array.length / 2);
+
+        for(int i = 0; i < middle; i++) {
+            left += array[i];
+        }
+
+        for(int i = middle; i < array.length; i++) {
+            right += array[i];
+        }
+
+        return left == right;
     }
 
 }
