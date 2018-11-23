@@ -89,7 +89,7 @@ class LessonOne {
     private static int calculate(int a, int b, int c, int d) {
         if (d == 0) {
             // На ноль делить нельзя
-            throw new NullPointerException("You can't divide by zero");
+            throw new ArithmeticException("You can't divide by zero");
         }
 
         return a * (b + (c / d));
