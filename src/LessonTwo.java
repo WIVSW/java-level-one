@@ -20,6 +20,13 @@ public class LessonTwo {
         System.out.println("\t До:    " + Arrays.toString(randomArray));
         changeArray(randomArray);
         System.out.println("\t После: " + Arrays.toString(randomArray));
+
+        // test calls for task№4
+        System.out.println("\n3. Создать квадратный двумерный целочисленный массив...:");
+        fillDiagonal(squareArray);
+        for(int[] item : squareArray) {
+            System.out.println("\t" + Arrays.toString(item));
+        }
     }
 
     /**
@@ -65,6 +72,22 @@ public class LessonTwo {
             if (array[i] < 6) {
                 array[i] *= 2;
             }
+        }
+    }
+
+    /**
+     * @see 4. Создать квадратный двумерный целочисленный массив
+     * (количество строк и столбцов одинаковое)
+     */
+    private static int[][] squareArray = new int[5][5];
+
+    /**
+     * @see 4. и с помощью цикла(-ов) заполнить
+     * его диагональные элементы единицами
+     */
+    private static void fillDiagonal(int[][] array) {
+        for(int i = 0; i < array.length; i++) {
+            array[i][i] = 1;
         }
     }
 
