@@ -22,11 +22,18 @@ public class LessonTwo {
         System.out.println("\t После: " + Arrays.toString(randomArray));
 
         // test calls for task№4
-        System.out.println("\n3. Создать квадратный двумерный целочисленный массив...:");
+        System.out.println("\n4. Создать квадратный двумерный целочисленный массив...:");
         fillDiagonal(squareArray);
         for(int[] item : squareArray) {
             System.out.println("\t" + Arrays.toString(item));
         }
+
+        // test calls for task№5
+        System.out.println("\n5. Задать одномерный массив...:");
+        MinAndMax minMax = findMinAndMax(minMaxArray);
+        System.out.println("\t В массиве: " + Arrays.toString(minMaxArray));
+        System.out.println("\t Минимальное значение: " + minMax.min);
+        System.out.println("\t Максимальное значение: " + minMax.max);
     }
 
     /**
@@ -88,6 +95,38 @@ public class LessonTwo {
     private static void fillDiagonal(int[][] array) {
         for(int i = 0; i < array.length; i++) {
             array[i][i] = 1;
+        }
+    }
+
+    /**
+     * @see ** 5. Задать одномерный массив
+     */
+    private static int[] minMaxArray = { 2, -1, 0, 3, -3, 1, -2 };
+
+    /**
+     * @see ** 5. и найти в нем минимальный и максимальный элементы
+     */
+    private static MinAndMax findMinAndMax(int[] array) {
+        int min = 0, max = 0;
+        for(int item : array) {
+            if (min > item) {
+                min = item;
+            }
+            if (max < item) {
+                max = item;
+            }
+        }
+
+        return new MinAndMax(min, max);
+    }
+
+    private static class MinAndMax {
+        public int min;
+        public int max;
+
+        public MinAndMax(int min, int max) {
+            this.min = min;
+            this.max = max;
         }
     }
 
