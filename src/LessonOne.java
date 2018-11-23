@@ -141,12 +141,7 @@ class LessonOne {
         boolean isDivideByHundred = year % 100 == 0;
         boolean isDivideByFourHundred = year % 400 == 0;
 
-        if (isDivideByFour && !isDivideByHundred)
-            return true;
-        else if (isDivideByFour && isDivideByHundred && isDivideByFourHundred)
-            return true;
-
-        return false;
+        return isDivideByFour && (!isDivideByHundred || isDivideByFourHundred);
     }
 
     /**
