@@ -1,3 +1,9 @@
+/**
+ * Java. Level 1. Lesson 2. Basic constructions
+ *
+ * @author Oleg Postnikov
+ * @version dated Nov 24, 2018
+ */
 import java.util.Arrays;
 
 public class LessonTwo {
