@@ -40,6 +40,12 @@ public class LessonTwo {
         System.out.println("\t Массив " + Arrays.toString(balanceArrayOne) + " сбалансирован? " + checkBalance(balanceArrayOne));
         System.out.println("\t Массив " + Arrays.toString(balanceArrayTwo) + " сбалансирован? " + checkBalance(balanceArrayTwo));
         System.out.println("\t Массив " + Arrays.toString(balanceArrayThree) + " сбалансирован? " + checkBalance(balanceArrayThree));
+
+        // test calls for task№7
+        System.out.println("\n7. Написать метод, которому на вход подаётся одномерный массив и число n...:");
+        System.out.println("\t До:    " + Arrays.toString(shiftArray));
+        shift(shiftArray, 2);
+        System.out.println("\t После: " + Arrays.toString(shiftArray));
     }
 
     /**
@@ -159,6 +165,37 @@ public class LessonTwo {
         }
 
         return left == right;
+    }
+
+    /**
+     * Не уверен, что правильно понял задачу, но т.к. в java нет отрицательных индексов,
+     * а задача предполагает, что n может быть отрицательным числом, значит пытаться
+     * изменить индексы массива не имеет смысла.
+     * @see 7. **** Написать метод, которому на вход подаётся одномерный массив и число n (может быть
+     * положительным, или отрицательным), при этом метод должен сместить все элементы
+     * массива на n позиций.
+     */
+    private static int[] shiftArray = { 1, 2, 3, 4, 5, 6 };
+
+    private static void shift(int[] array, int n) {
+        if (n != 0) {
+            boolean isPositive = n > 0;
+            int lastIndex = array.length - 1;
+            int i = isPositive ? lastIndex : 0;
+
+            // все еще можно использовать цикл for,
+            // но в данном случае while выглядит читабельнее
+            while(isPositive ? i >= 0 : i <= lastIndex) {
+                int k = i + n;
+
+                if (k >= 0 && k <= lastIndex) {
+                    array[k] = array[i];
+                }
+                array[i] = 0;
+
+                i = isPositive ? i - 1 : i + 1;
+            }
+        }
     }
 
 }
