@@ -7,12 +7,29 @@ public class LessonThreeTaskOne {
 
     private static int LIMIT_RANDOM = 10;
 
-    private static int attemptsLeft;
-
     private static Random random = new Random();
 
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {}
+    public static void main(String[] args) {
+        run();
+    }
+
+    private static void run() {
+        int number = random.nextInt(LIMIT_RANDOM);
+        int attemptsLeft = MAX_ATTEMPTS_COUNT;
+        boolean isSucceded;
+
+        System.out.println("Ответ: " + number);
+        System.out.printf("Угадайте целое число от 0 до %d. ", LIMIT_RANDOM - 1);
+
+        do {
+            System.out.printf("Попыток: %d\n", attemptsLeft);
+
+            isSucceded = number == scanner.nextInt();
+
+            System.out.print(isSucceded ? "Угадали!" : "Не угадали. ");
+        } while (!isSucceded && --attemptsLeft > 0);
+    }
 
 }
