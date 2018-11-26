@@ -1,6 +1,17 @@
+/**
+ * Java. Level 1. Lesson 3. Task 1. Practice
+ *
+ * @author Oleg Postnikov
+ * @version dated Nov 27, 2018
+ */
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Написать программу, которая загадывает случайное число от 0 до 9, и пользователю дается 3
+ * попытки угадать это число. При каждой попытке компьютер должен сообщить больше ли
+ * указанное пользователем число, чем загаданное, или меньше.
+ */
 public class LessonThreeTaskOne {
 
     private static int MAX_ATTEMPTS_COUNT = 3;
