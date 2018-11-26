@@ -22,7 +22,8 @@ public class LessonThreeTaskTwo {
         boolean isSucceded;
 
         /** TODO: Раскомментировать для тестирования */
-        System.out.println("Ответ - " + word);
+        //System.out.println("Ответ - " + word);
+        System.out.println("Попробуйте отгадать фрукт!");
 
         do {
             String guess = scanner.next();
@@ -42,7 +43,20 @@ public class LessonThreeTaskTwo {
     }
 
     private static String getSimilarSubString(String source, String string) {
-        return "";
+        int sourceLength = source.length();
+        int stringLength = string.length();
+        StringBuilder result = new StringBuilder();
+
+        for(int i = 0; i < 15; i++) {
+            if (i < sourceLength && i < stringLength) {
+                char a = source.charAt(i);
+                result.append(a == string.charAt(i) ? a : '#');
+            } else {
+                result.append('#');
+            }
+        }
+
+        return result.toString();
     }
 
 }
