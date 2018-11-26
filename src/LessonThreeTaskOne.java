@@ -23,7 +23,8 @@ public class LessonThreeTaskOne {
         int attemptsLeft = MAX_ATTEMPTS_COUNT;
         boolean isSucceded;
 
-        System.out.println("Ответ: " + number);
+        /** TODO: Раскомментировать для тестирования */
+        //System.out.println("Ответ: " + number);
         System.out.printf("Угадайте целое число от 0 до %d. ", LIMIT_RANDOM - 1);
 
         do {
