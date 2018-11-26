@@ -12,7 +12,10 @@ public class LessonThreeTaskOne {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        run();
+        do {
+            run();
+            System.out.println("\nПовторить игру еще раз? 1 – да / 0 – нет.");
+        } while (1 == scanner.nextInt());
     }
 
     private static void run() {
