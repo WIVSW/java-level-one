@@ -19,11 +19,30 @@ public class LessonThreeTaskTwo {
 
     public static void main(String[] args) {
         String word = getRandomWord();
-        System.out.println(word);
+        boolean isSucceded;
+
+        /** TODO: Раскомментировать для тестирования */
+        System.out.println("Ответ - " + word);
+
+        do {
+            String guess = scanner.next();
+            isSucceded = word.equals(guess);
+
+            if (!isSucceded) {
+                System.out.println("Не верно. Подсказка: " + getSimilarSubString(word, guess));
+            }
+
+        } while (!isSucceded);
+
+        System.out.println("Вы победили!");
     }
 
     private static String getRandomWord() {
         return words[random.nextInt(words.length)];
+    }
+
+    private static String getSimilarSubString(String source, String string) {
+        return "";
     }
 
 }
