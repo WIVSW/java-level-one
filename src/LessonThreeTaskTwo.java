@@ -1,5 +1,5 @@
 /**
- * Java. Level 1. Lesson 3. Task 1. Practice
+ * Java. Level 1. Lesson 3. Task 2. Practice
  *
  * @author Oleg Postnikov
  * @version dated Nov 27, 2018
