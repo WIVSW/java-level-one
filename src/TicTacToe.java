@@ -6,6 +6,15 @@
  */
 public class TicTacToe {
 
+    private static final int SIZE = 5;
+    private static final int DOTS_TO_WIN = 4;
+
+    private static final char DOT_EMPTY = '•';
+    private static final char DOT_X = 'X';
+    private static final char DOT_O = 'O';
+
+    private static char[][] map;
+
     public static void main(String[] args) {}
 
 }
