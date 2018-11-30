@@ -4,6 +4,9 @@
  * @author Oleg Postnikov
  * @version dated Dec 1, 2018
  */
+import java.util.Random;
+import java.util.Scanner;
+
 public class TicTacToe {
 
     private final int SIZE = 5;
@@ -12,6 +15,9 @@ public class TicTacToe {
     private final char DOT_EMPTY = '•';
     private final char DOT_X = 'X';
     private final char DOT_O = 'O';
+
+    private Scanner scanner = new Scanner(System.in);
+    private Random random = new Random();
 
     private char[][] map;
     private char[] playerType = {DOT_X, DOT_O};
@@ -70,6 +76,35 @@ public class TicTacToe {
         }
 
         return map[y][x]== DOT_EMPTY;
+    }
+
+    private void turn(char dot) {
+        TurnResult result;
+
+        do {
+            result = dot == DOT_X ? humanTurn() : aiTurn();
+        } while(!isCellValid(result.x, result.y));
+
+        map[result.y][result.x] = dot;
+    }
+
+    private TurnResult humanTurn() {
+        System.out.println("Введите координаты в формате X Y в диапозоне от 1 до " + SIZE);
+        return new TurnResult(scanner.nextInt() - 1, scanner.nextInt() - 1);
+    }
+
+    private TurnResult aiTurn() {
+        return new TurnResult(random.nextInt(SIZE), random.nextInt(SIZE));
+    }
+
+    private class TurnResult {
+        public int x;
+        public int y;
+
+        public TurnResult(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
     }
 
 }
