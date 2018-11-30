@@ -15,6 +15,18 @@ public class TicTacToe {
 
     private static char[][] map;
 
-    public static void main(String[] args) {}
+    public static void main(String[] args) {
+        initMap();
+    }
+
+    private static void initMap() {
+        map = new char[SIZE][SIZE];
+
+        for(int i = 0; i < SIZE; i++) {
+            for(int j = 0; j < SIZE; j++) {
+                map[i][j] = DOT_EMPTY;
+            }
+        }
+    }
 
 }
