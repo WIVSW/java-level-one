@@ -14,12 +14,14 @@ public class TicTacToe {
     private final char DOT_O = 'O';
 
     private char[][] map;
+    private char[] playerType = {DOT_X, DOT_O};
 
     public static void main(String[] args) {
         new TicTacToe().game();
     }
 
     void game() {
+        int playerTypeIndex = 0;
         initMap();
         printMap();
     }
