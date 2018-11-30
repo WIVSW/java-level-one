@@ -6,21 +6,25 @@
  */
 public class TicTacToe {
 
-    private static final int SIZE = 5;
-    private static final int DOTS_TO_WIN = 4;
+    private final int SIZE = 5;
+    private final int DOTS_TO_WIN = 4;
 
-    private static final char DOT_EMPTY = '•';
-    private static final char DOT_X = 'X';
-    private static final char DOT_O = 'O';
+    private final char DOT_EMPTY = '•';
+    private final char DOT_X = 'X';
+    private final char DOT_O = 'O';
 
-    private static char[][] map;
+    private char[][] map;
 
     public static void main(String[] args) {
+        new TicTacToe().game();
+    }
+
+    void game() {
         initMap();
         printMap();
     }
 
-    private static void initMap() {
+    private void initMap() {
         map = new char[SIZE][SIZE];
 
         for(int i = 0; i < SIZE; i++) {
@@ -30,7 +34,7 @@ public class TicTacToe {
         }
     }
 
-    private static void printMap() {
+    private void printMap() {
         System.out.print("_|_");
         for(int i = 0; i < SIZE; i++) {
             System.out.print( (i + 1) + "_");
