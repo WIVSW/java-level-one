@@ -58,6 +58,58 @@ public class TicTacToe {
     }
 
     private boolean checkWin(char dot) {
+        // horizontal
+        for(int i = 0; i < SIZE; i++) {
+            int count = 0;
+
+            for(int j = 0; j < SIZE; j++) {
+                count = map[i][j] == dot ? count + 1 : 0;
+
+                if (count >= DOTS_TO_WIN) {
+                    return true;
+                }
+            }
+        }
+
+        // vertical
+        for(int i = 0; i < SIZE; i++) {
+            int count = 0;
+
+            for(int j = 0; j < SIZE; j++) {
+                count = map[j][i] == dot ? count + 1 : 0;
+
+                if (count >= DOTS_TO_WIN) {
+                    return true;
+                }
+            }
+        }
+
+        int diff = SIZE - DOTS_TO_WIN;
+        int length = (diff * 2) + 1;
+        // diagonal
+        for(int k = -diff; k <= diff; k++) {
+            int count = 0;
+            for(int i = 0; i < SIZE - Math.abs(k); i++) {
+                count = map[i - Math.min(k, 0)][i + Math.max(k, 0)] == dot ? count + 1 : 0;
+
+                if (count >= DOTS_TO_WIN) {
+                    return true;
+                }
+            }
+        }
+
+        // reverse diagonal
+        for(int k = -diff; k <= diff; k++) {
+            int count = 0;
+            for(int i = 0; i < SIZE - Math.abs(k); i++) {
+                count = map[i + Math.max(k, 0)][SIZE - 1 - i + Math.min(k, 0)] == dot ? count + 1 : 0;
+
+                if (count >= DOTS_TO_WIN) {
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 
