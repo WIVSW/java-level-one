@@ -27,9 +27,38 @@ public class TicTacToe {
     }
 
     void game() {
-        int playerTypeIndex = 0;
         initMap();
         printMap();
+        runGame();
+    }
+
+    private void runGame() {
+        int playerTypeIndex = 0;
+
+        while(true) {
+            char dot = playerType[playerTypeIndex];
+
+            turn(dot);
+            printMap();
+
+            if (checkWin(dot)) {
+                System.out.println(getPlayerNameFromDot(dot) + " победил");
+                break;
+            }
+
+            if (isMapFull()) {
+                System.out.println("Ничья");
+                break;
+            }
+
+            playerTypeIndex ^= 1;
+        }
+
+        System.out.println("Игра закончена");
+    }
+
+    private boolean checkWin(char dot) {
+        return false;
     }
 
     private void initMap() {
