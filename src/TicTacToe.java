@@ -17,6 +17,7 @@ public class TicTacToe {
 
     public static void main(String[] args) {
         initMap();
+        printMap();
     }
 
     private static void initMap() {
@@ -26,6 +27,22 @@ public class TicTacToe {
             for(int j = 0; j < SIZE; j++) {
                 map[i][j] = DOT_EMPTY;
             }
+        }
+    }
+
+    private static void printMap() {
+        System.out.print("_|_");
+        for(int i = 0; i < SIZE; i++) {
+            System.out.print( (i + 1) + "_");
+        }
+        System.out.print("\n");
+
+        for(int i = 0; i < SIZE; i++) {
+            System.out.print((i + 1) + "| ");
+            for(int j = 0; j < SIZE; j++) {
+                System.out.print(map[i][j] + " ");
+            }
+            System.out.print("\n");
         }
     }
 
