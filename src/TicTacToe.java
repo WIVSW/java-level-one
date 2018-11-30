@@ -62,4 +62,12 @@ public class TicTacToe {
         return true;
     }
 
+    private boolean isCellValid(int x, int y) {
+        if (x < 0 || x >= SIZE || y < 0 || y >= SIZE) {
+            return false;
+        }
+
+        return map[y][x]== DOT_EMPTY;
+    }
+
 }
