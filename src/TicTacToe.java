@@ -86,6 +86,8 @@ public class TicTacToe {
         } while(!isCellValid(result.x, result.y));
 
         map[result.y][result.x] = dot;
+
+        System.out.println(getPlayerNameFromDot(dot) + " cходил в точку " + (result.x + 1) + " " + (result.y + 1));
     }
 
     private TurnResult humanTurn() {
@@ -105,6 +107,10 @@ public class TicTacToe {
             this.x = x;
             this.y = y;
         }
+    }
+
+    private String getPlayerNameFromDot(char dot) {
+        return dot == DOT_X ? "Человек" : "Искуственный Интеллект";
     }
 
 }
