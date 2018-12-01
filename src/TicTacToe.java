@@ -58,18 +58,15 @@ public class TicTacToe {
         System.out.println("Игра закончена");
     }
 
-    /**
-     * Сперва у меня вышло 4 цикла по порядку,
-     * что было совершенно не читаемо и вместо этих циклов
-     * я решил в отдельных методах получать выигрышные координаты,
-     * а после в отдельном цикле считать совпадения.
-     * Увеличилась сложность алгоритма, но повысилась читаемость.
-     * Для того, чтобы как-то снизить сложность метода решил не вычислять координаты
-     * в методе, а один раз вычислить на старте приложения, а потом брать из переменной.
-     */
     private boolean checkWin(char dot) {
         // horizontal
         char[] dots = {dot};
+
+        return getWinningSequencesForDots(dots).length > 0;
+    }
+
+    private Sequence[] getWinningSequencesForDots(char[] dots) {
+        Sequence[] result = {};
 
         for(int i = 0; i < WINNING_SEQUENCES.length; i++) {
             // iterate type of sequences (horizontal, vertical, diagonal, reverse diagonal)
@@ -77,6 +74,7 @@ public class TicTacToe {
             for(int j = 0; j < WINNING_SEQUENCES[i].length; j++) {
                 // iterate sequence of coords
                 int count = 0;
+                Sequence sequence = new Sequence();
 
                 for(int k = 0; k < WINNING_SEQUENCES[i][j].length; k++) {
                     // iterate coords
@@ -89,16 +87,74 @@ public class TicTacToe {
                     int x = coords[0];
                     int y = coords[1];
 
-                    count = checkDotsInCoords(x, y, dots) ? count + 1 : 0;
+                    if (checkDotsInCoords(x, y, dots)) {
+                        count++;
+                        sequence.add(x, y);
+                    } else {
+                        count = 0;
+                        sequence = new Sequence();
+                    }
 
                     if (count >= DOTS_TO_WIN) {
-                        return true;
+                        // push new sequence to result array
+                        int length = result.length;
+                        Sequence[] newResult = new Sequence[length + 1];
+
+                        for(int l = 0; l < length; l++) {
+                            newResult[l] = result[l];
+                        }
+
+                        newResult[length] = sequence;
+
+                        result = newResult;
                     }
                 }
             }
         }
 
-        return false;
+        return result;
+    }
+
+    private class Sequence {
+       public int countO = 0;
+       public int countX = 0;
+       public int countEmpty = 0;
+       public int[][] items = {};
+
+       public void add(int x, int y) {
+           int[] coords = {x, y};
+           char dot = map[y][x];
+
+           push(coords);
+           increaseCount(dot);
+       }
+
+       private void push(int[] coords) {
+           int length = items.length;
+           int[][] newItems = new int[length + 1][2];
+
+           for(int i = 0; i < length; i++) {
+               newItems[i] = items[i];
+           }
+
+           newItems[length] = coords;
+           this.items = newItems;
+       }
+
+       private void increaseCount(char dot) {
+           switch(dot) {
+               case DOT_O:
+                   this.countO++;
+                   break;
+               case DOT_X:
+                   this.countX++;
+                   break;
+               case DOT_EMPTY:
+                   this.countEmpty++;
+                   break;
+           }
+       }
+
     }
 
     private boolean checkDotsInCoords(int x, int y, char[] dots) {
