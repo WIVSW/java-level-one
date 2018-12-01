@@ -96,17 +96,8 @@ public class TicTacToe {
                     }
 
                     if (count >= DOTS_TO_WIN) {
-                        // push new sequence to result array
-                        int length = result.length;
-                        Sequence[] newResult = new Sequence[length + 1];
-
-                        for(int l = 0; l < length; l++) {
-                            newResult[l] = result[l];
-                        }
-
-                        newResult[length] = sequence;
-
-                        result = newResult;
+                        count = 0;
+                        result = push(result, sequence);
                     }
                 }
             }
@@ -304,7 +295,42 @@ public class TicTacToe {
     }
 
     private TurnResult aiTurn() {
+        char[] dots = {DOT_X, DOT_EMPTY};
+        Sequence[] sequences = getWinningSequencesForDots(dots);
+        sequences = filterSequencesByDotXCount(sequences);
         return new TurnResult(random.nextInt(SIZE), random.nextInt(SIZE));
+    }
+
+    private Sequence[] filterSequencesByDotXCount(Sequence[] sequences) {
+        Sequence[] newSequences = {};
+
+        for(int i = 0; i < sequences.length; i++) {
+            if (newSequences.length > 0) {
+                if (newSequences[0].countX < sequences[i].countX) {
+                    Sequence[] refreshed = { sequences[i] };
+                    newSequences = refreshed;
+                } else if (newSequences[0].countX == sequences[i].countX) {
+                    newSequences = push(newSequences, sequences[i]);
+                }
+            } else {
+                newSequences = push(newSequences, sequences[i]);
+            }
+        }
+
+        return newSequences;
+    }
+
+    private Sequence[] push(Sequence[] sequences, Sequence item) {
+        int length = sequences.length;
+        Sequence[] newSequence = new Sequence[length + 1];
+
+        for(int i = 0; i < length; i++) {
+            newSequence[i] = sequences[i];
+        }
+
+        newSequence[length] = item;
+
+        return newSequence;
     }
 
     private class TurnResult {
