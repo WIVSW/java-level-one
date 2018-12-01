@@ -59,58 +59,113 @@ public class TicTacToe {
 
     private boolean checkWin(char dot) {
         // horizontal
-        for(int i = 0; i < SIZE; i++) {
-            int count = 0;
+        char[] dots = {dot};
+        int[][][][] sequences = {
+            getHorizontalCoords(),
+            getVerticalCoords(),
+            getDiagonalCoords(),
+            getReverseDiagonalCoords()
+        };
 
-            for(int j = 0; j < SIZE; j++) {
-                count = map[i][j] == dot ? count + 1 : 0;
+        for(int i = 0; i < sequences.length; i++) {
+            // iterate type of coords (horizontal, vertical, diagonal)
 
-                if (count >= DOTS_TO_WIN) {
-                    return true;
-                }
-            }
-        }
+            for(int j = 0; j < sequences[i].length; j++) {
+                // iterate sequence of coords
+                int count = 0;
 
-        // vertical
-        for(int i = 0; i < SIZE; i++) {
-            int count = 0;
+                for(int k = 0; k < sequences[i][j].length; k++) {
+                    // iterate coords
+                    int[] coords = sequences[i][j][k];
 
-            for(int j = 0; j < SIZE; j++) {
-                count = map[j][i] == dot ? count + 1 : 0;
+                    if (coords == null) {
+                        continue;
+                    }
 
-                if (count >= DOTS_TO_WIN) {
-                    return true;
-                }
-            }
-        }
+                    int x = coords[0];
+                    int y = coords[1];
 
-        int diff = SIZE - DOTS_TO_WIN;
-        int length = (diff * 2) + 1;
-        // diagonal
-        for(int k = -diff; k <= diff; k++) {
-            int count = 0;
-            for(int i = 0; i < SIZE - Math.abs(k); i++) {
-                count = map[i - Math.min(k, 0)][i + Math.max(k, 0)] == dot ? count + 1 : 0;
+                    count = checkDotsInCoords(x, y, dots) ? count + 1 : 0;
 
-                if (count >= DOTS_TO_WIN) {
-                    return true;
-                }
-            }
-        }
-
-        // reverse diagonal
-        for(int k = -diff; k <= diff; k++) {
-            int count = 0;
-            for(int i = 0; i < SIZE - Math.abs(k); i++) {
-                count = map[i + Math.max(k, 0)][SIZE - 1 - i + Math.min(k, 0)] == dot ? count + 1 : 0;
-
-                if (count >= DOTS_TO_WIN) {
-                    return true;
+                    if (count >= DOTS_TO_WIN) {
+                        return true;
+                    }
                 }
             }
         }
 
         return false;
+    }
+
+    private boolean checkDotsInCoords(int x, int y, char[] dots) {
+        for(int i = 0; i < dots.length; i++) {
+            if (map[y][x] == dots[i]) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private int[][][] getHorizontalCoords() {
+        return buildStraightCoords(true);
+    }
+
+    private int[][][] getVerticalCoords() {
+        return buildStraightCoords(false);
+    }
+
+    private int[][][] getDiagonalCoords() {
+        return buildDiagonalCoords(false);
+    }
+
+    private int[][][] getReverseDiagonalCoords() {
+        return buildDiagonalCoords(true);
+    }
+
+    private int[][][] buildDiagonalCoords(boolean isReverse) {
+        // coords[sequence][coords][x,y]
+        int diff = SIZE - DOTS_TO_WIN;
+        int[][][] coords = new int[SIZE][SIZE][2];
+
+        for(int k = -diff; k <= diff; k++) {
+
+            int size = SIZE - Math.abs(k);
+
+            for(int i = 0; i < SIZE; i++) {
+                if (i >= size) {
+                    coords[k + diff][i] = null;
+                    continue;
+                }
+
+                int x = isReverse ? SIZE - 1 - i + Math.min(k, 0) : i + Math.max(k, 0);
+                int y = isReverse ? i + Math.max(k, 0) : i - Math.min(k, 0);
+
+                coords[k + diff][i] = createCoords(x, y);
+
+            }
+
+        }
+
+        return coords;
+    }
+
+    private int[][][] buildStraightCoords(boolean isReverse) {
+        // coords[sequence][coords][x,y]
+        int[][][] coords = new int[SIZE][SIZE][2];
+
+        for(int i = 0; i < SIZE; i++) {
+            for(int j = 0; j < SIZE; j++) {
+                coords[i][j] = isReverse ? createCoords(j, i) : createCoords(i, j);
+            }
+        }
+
+        return coords;
+    }
+
+    private int[] createCoords(int x, int y) {
+        int[] coords = {x, y};
+        return coords;
     }
 
     private void initMap() {
