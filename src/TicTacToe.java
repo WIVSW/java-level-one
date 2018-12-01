@@ -21,6 +21,7 @@ public class TicTacToe {
 
     private char[][] map;
     private char[] playerType = {DOT_X, DOT_O};
+    private TurnResult lastPlayerTurn = null;
 
     public static void main(String[] args) {
         new TicTacToe().game();
@@ -126,7 +127,7 @@ public class TicTacToe {
     private int[][][] buildDiagonalCoords(boolean isReverse) {
         // coords[sequence][coords][x,y]
         int diff = SIZE - DOTS_TO_WIN;
-        int[][][] coords = new int[SIZE][SIZE][2];
+        int[][][] coords = new int[(diff * 2) + 1][SIZE][2];
 
         for(int k = -diff; k <= diff; k++) {
 
@@ -228,7 +229,10 @@ public class TicTacToe {
 
     private TurnResult humanTurn() {
         System.out.println("Введите координаты в формате X Y в диапозоне от 1 до " + SIZE);
-        return new TurnResult(scanner.nextInt() - 1, scanner.nextInt() - 1);
+
+        lastPlayerTurn = new TurnResult(scanner.nextInt() - 1, scanner.nextInt() - 1);
+
+        return lastPlayerTurn;
     }
 
     private TurnResult aiTurn() {
