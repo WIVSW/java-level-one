@@ -15,13 +15,13 @@ public class TicTacToe {
     private final char DOT_EMPTY = '•';
     private final char DOT_X = 'X';
     private final char DOT_O = 'O';
+    private final char[] PLAYER_TYPE = {DOT_X, DOT_O};
+    private final int[][][][] WINNING_SEQUENCES = calculateWinningSequences();
 
     private Scanner scanner = new Scanner(System.in);
     private Random random = new Random();
 
     private char[][] map;
-    private char[] playerType = {DOT_X, DOT_O};
-    private TurnResult lastPlayerTurn = null;
 
     public static void main(String[] args) {
         new TicTacToe().game();
@@ -37,7 +37,7 @@ public class TicTacToe {
         int playerTypeIndex = 0;
 
         while(true) {
-            char dot = playerType[playerTypeIndex];
+            char dot = PLAYER_TYPE[playerTypeIndex];
 
             turn(dot);
             printMap();
@@ -58,26 +58,29 @@ public class TicTacToe {
         System.out.println("Игра закончена");
     }
 
+    /**
+     * Сперва у меня вышло 4 цикла по порядку,
+     * что было совершенно не читаемо и вместо этих циклов
+     * я решил в отдельных методах получать выигрышные координаты,
+     * а после в отдельном цикле считать совпадения.
+     * Увеличилась сложность алгоритма, но повысилась читаемость.
+     * Для того, чтобы как-то снизить сложность метода решил не вычислять координаты
+     * в методе, а один раз вычислить на старте приложения, а потом брать из переменной.
+     */
     private boolean checkWin(char dot) {
         // horizontal
         char[] dots = {dot};
-        int[][][][] sequences = {
-            getHorizontalCoords(),
-            getVerticalCoords(),
-            getDiagonalCoords(),
-            getReverseDiagonalCoords()
-        };
 
-        for(int i = 0; i < sequences.length; i++) {
-            // iterate type of coords (horizontal, vertical, diagonal)
+        for(int i = 0; i < WINNING_SEQUENCES.length; i++) {
+            // iterate type of sequences (horizontal, vertical, diagonal, reverse diagonal)
 
-            for(int j = 0; j < sequences[i].length; j++) {
+            for(int j = 0; j < WINNING_SEQUENCES[i].length; j++) {
                 // iterate sequence of coords
                 int count = 0;
 
-                for(int k = 0; k < sequences[i][j].length; k++) {
+                for(int k = 0; k < WINNING_SEQUENCES[i][j].length; k++) {
                     // iterate coords
-                    int[] coords = sequences[i][j][k];
+                    int[] coords = WINNING_SEQUENCES[i][j][k];
 
                     if (coords == null) {
                         continue;
@@ -106,6 +109,17 @@ public class TicTacToe {
         }
 
         return false;
+    }
+
+    private int[][][][] calculateWinningSequences() {
+        int[][][][] sequences = {
+                getHorizontalCoords(),
+                getVerticalCoords(),
+                getDiagonalCoords(),
+                getReverseDiagonalCoords()
+        };
+
+        return sequences;
     }
 
     private int[][][] getHorizontalCoords() {
@@ -230,9 +244,7 @@ public class TicTacToe {
     private TurnResult humanTurn() {
         System.out.println("Введите координаты в формате X Y в диапозоне от 1 до " + SIZE);
 
-        lastPlayerTurn = new TurnResult(scanner.nextInt() - 1, scanner.nextInt() - 1);
-
-        return lastPlayerTurn;
+        return new TurnResult(scanner.nextInt() - 1, scanner.nextInt() - 1);
     }
 
     private TurnResult aiTurn() {
