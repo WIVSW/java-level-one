@@ -4,6 +4,7 @@
  * @author Oleg Postnikov
  * @version dated Dec 1, 2018
  */
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -116,20 +117,8 @@ public class TicTacToe {
            int[] coords = {x, y};
            char dot = map[y][x];
 
-           push(coords);
+           this.items = push(this.items, coords);
            increaseCount(dot);
-       }
-
-       private void push(int[] coords) {
-           int length = items.length;
-           int[][] newItems = new int[length + 1][2];
-
-           for(int i = 0; i < length; i++) {
-               newItems[i] = items[i];
-           }
-
-           newItems[length] = coords;
-           this.items = newItems;
        }
 
        private void increaseCount(char dot) {
@@ -298,6 +287,8 @@ public class TicTacToe {
         char[] dots = {DOT_X, DOT_EMPTY};
         Sequence[] sequences = getWinningSequencesForDots(dots);
         sequences = filterSequencesByDotXCount(sequences);
+        int[][] emptyDots = collectDotCoordsFromSequences(sequences, DOT_EMPTY);
+
         return new TurnResult(random.nextInt(SIZE), random.nextInt(SIZE));
     }
 
@@ -320,7 +311,22 @@ public class TicTacToe {
         return newSequences;
     }
 
-    private Sequence[] push(Sequence[] sequences, Sequence item) {
+    private int[][] collectDotCoordsFromSequences(Sequence[] sequences, char dot) {
+        int[][] result = {};
+
+        for(int i = 0; i < sequences.length; i++) {
+            for(int j = 0; j < sequences[i].items.length; j++) {
+                int[] coords = sequences[i].items[j];
+                if (map[coords[1]][coords[0]] == dot) {
+                    result = push(result, coords);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private static Sequence[] push(Sequence[] sequences, Sequence item) {
         int length = sequences.length;
         Sequence[] newSequence = new Sequence[length + 1];
 
@@ -331,6 +337,18 @@ public class TicTacToe {
         newSequence[length] = item;
 
         return newSequence;
+    }
+
+    private static int[][] push(int[][] items, int[] coords) {
+        int length = items.length;
+        int[][] newItems = new int[length + 1][2];
+
+        for(int i = 0; i < length; i++) {
+            newItems[i] = items[i];
+        }
+
+        newItems[length] = coords;
+        return newItems;
     }
 
     private class TurnResult {
