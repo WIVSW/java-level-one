@@ -2,9 +2,8 @@
  * Java. Level 1. Lesson 4. Tic Tac Toe
  *
  * @author Oleg Postnikov
- * @version dated Dec 1, 2018
+ * @version dated Dec 2, 2018
  */
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -17,6 +16,11 @@ public class TicTacToe {
     private final char DOT_X = 'X';
     private final char DOT_O = 'O';
     private final char[] PLAYER_TYPE = {DOT_X, DOT_O};
+
+    /**
+     * Основываясь на текущих константах расчитываем
+     * все возможные выигрышные комбинации координат в map.
+     */
     private final int[][][][] WINNING_SEQUENCES = calculateWinningSequences();
 
     private Scanner scanner = new Scanner(System.in);
@@ -283,13 +287,17 @@ public class TicTacToe {
         return new TurnResult(scanner.nextInt() - 1, scanner.nextInt() - 1);
     }
 
+    /**
+     * AI не старается выиграть, только заблокировать ход игрока.
+     */
     private TurnResult aiTurn() {
         char[] dots = {DOT_X, DOT_EMPTY};
         Sequence[] sequences = getWinningSequencesForDots(dots);
         sequences = filterSequencesByDotXCount(sequences);
-        int[][] emptyDots = collectDotCoordsFromSequences(sequences, DOT_EMPTY);
+        int[][] emptyDotsCoords = collectDotCoordsFromSequences(sequences, DOT_EMPTY);
+        int[] randomCoords = emptyDotsCoords[random.nextInt(emptyDotsCoords.length)];
 
-        return new TurnResult(random.nextInt(SIZE), random.nextInt(SIZE));
+        return new TurnResult(randomCoords[0], randomCoords[1]);
     }
 
     private Sequence[] filterSequencesByDotXCount(Sequence[] sequences) {
