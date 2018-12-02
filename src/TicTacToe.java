@@ -295,7 +295,14 @@ public class TicTacToe {
         Sequence[] sequences = getWinningSequencesForDots(dots);
         sequences = filterSequencesByDotXCount(sequences);
         int[][] emptyDotsCoords = collectDotCoordsFromSequences(sequences, DOT_EMPTY);
-        int[] randomCoords = emptyDotsCoords[random.nextInt(emptyDotsCoords.length)];
+        int[] randomCoords = new int[2];
+
+        if (emptyDotsCoords.length > 0) {
+            randomCoords = emptyDotsCoords[random.nextInt(emptyDotsCoords.length)];
+        } else {
+            randomCoords[0] = random.nextInt(SIZE);
+            randomCoords[1] = random.nextInt(SIZE);
+        }
 
         return new TurnResult(randomCoords[0], randomCoords[1]);
     }
