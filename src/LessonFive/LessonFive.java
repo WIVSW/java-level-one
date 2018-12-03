@@ -18,8 +18,8 @@ public class LessonFive {
 
     public static void main(String[] args) {
         for(Person person : persons) {
-            if (person.age > 40) {
-                person.log();
+            if (person.getAge() > 40) {
+                System.out.println(person);
                 System.out.println();
             }
         }
