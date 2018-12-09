@@ -26,5 +26,7 @@ class LessonSeven {
 
         System.out.println();
         plate.info();
+        plate.add(50);
+        plate.info();
     }
 }
