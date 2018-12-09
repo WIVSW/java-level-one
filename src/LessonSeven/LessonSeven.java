@@ -9,10 +9,22 @@ package LessonSeven;
 class LessonSeven {
 
     public static void main(String[] args) {
-        Cat cat = new Cat("Barsik", 5);
         Plate plate = new Plate(100);
-        plate.info();
-        cat.eat(plate);
+        Cat[] cats = {
+            new Cat("Барсик", 10),
+            new Cat("Кузя", 20),
+            new Cat("Кекс", 30),
+            new Cat("Мурзик", 40),
+            new Cat("Персик", 50)
+        };
+
+        System.out.println("Коты:");
+        for(Cat cat : cats) {
+            cat.eat(plate);
+            System.out.println("\t" + cat);
+        }
+
+        System.out.println();
         plate.info();
     }
 }
