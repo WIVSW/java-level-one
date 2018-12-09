@@ -21,4 +21,9 @@ class Cat {
             satiety = true;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Имя: " + name + ", Сыт: " + satiety + ", Аппетит: " + appetite;
+    }
 }
