@@ -14,6 +14,10 @@ class Plate {
         this.food = food;
     }
 
+    void add(int food) {
+        this.food += food;
+    }
+
     boolean decreaseFood(int n) {
         int food = this.food - n;
 
