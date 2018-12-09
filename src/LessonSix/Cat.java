@@ -1,3 +1,9 @@
+/**
+ * Java. Level 1. Lesson 6. Advanced OOP
+ *
+ * @author Oleg Postnikov
+ * @version dated Dec 9, 2018
+ */
 package LessonSix;
 
 class Cat extends Animal {
