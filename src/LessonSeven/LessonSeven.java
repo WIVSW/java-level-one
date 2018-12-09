@@ -1,5 +1,5 @@
 /**
- * Java. Level 1. Lesson 6. Practice of OOP
+ * Java. Level 1. Lesson 7. Practice of OOP
  *
  * @author Oleg Postnikov
  * @version dated Dec 9, 2018
