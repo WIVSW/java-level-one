@@ -9,6 +9,7 @@ package LessonSeven;
 class Cat {
     private String name;
     private int appetite;
+    private boolean satiety = false;
 
     Cat(String name, int appetite) {
         this.name = name;
@@ -16,6 +17,8 @@ class Cat {
     }
 
     void eat(Plate p) {
-        p.decreaseFood(appetite);
+        if (p.decreaseFood(appetite)) {
+            satiety = true;
+        }
     }
 }
