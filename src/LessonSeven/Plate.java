@@ -19,7 +19,12 @@ class Plate {
     }
 
     void info() {
-        System.out.println("plate: " + food);
+        System.out.println(this);
+    }
+
+    @Override
+    public String toString() {
+        return "plate: " + food;
     }
 
 }
