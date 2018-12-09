@@ -2,13 +2,19 @@ package LessonSix;
 
 import java.util.Random;
 
-class Animal {
+interface IAnimal {
+    void run(double meters);
+    void jump(double meters);
+    void swim(double meters);
+}
+
+abstract class Animal implements IAnimal {
 
     private static Random random = new Random();
 
-    private double runLimit;
-    private double jumpLimit;
-    private double swimLimit;
+    protected double runLimit;
+    protected double jumpLimit;
+    protected double swimLimit;
 
     Animal(double runLimit, double jumpLimit, double swimLimit) {
         this.runLimit = randomize(runLimit);
@@ -16,19 +22,7 @@ class Animal {
         this.swimLimit = randomize(swimLimit);
     }
 
-    protected void run(double meters) {
-        doAction("run", meters, runLimit);
-    }
-
-    protected void jump(double meters) {
-        doAction("jump", meters, jumpLimit);
-    }
-
-    protected void swim(double meters) {
-        doAction("swim", meters, swimLimit);
-    }
-
-    private void doAction(String action, double meters, double limit) {
+    protected void doAction(String action, double meters, double limit) {
         System.out.println(action + ": " + isActionValid(meters, limit));
     }
 
