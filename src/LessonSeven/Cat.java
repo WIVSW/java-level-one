@@ -17,7 +17,8 @@ class Cat {
     }
 
     void eat(Plate p) {
-        if (p.decreaseFood(appetite)) {
+        // Если кот сыт, то уменьшения еды в миске не произойдет
+        if (!satiety && p.decreaseFood(appetite)) {
             satiety = true;
         }
     }
